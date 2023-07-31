@@ -255,20 +255,7 @@ public class SpringprojectApplication {
 
 
     
-    @RequestMapping(path = "/downloadLargeFile2", method = RequestMethod.GET)
-    public ResponseEntity<Resource> downloadLargeFile2() {
-        final HttpHeaders httpHeaders = new HttpHeaders();
-        final File file = new File(FILE_PATH);
-        final FileSystemResource resource = new FileSystemResource(file);
-        httpHeaders.set(HttpHeaders.LAST_MODIFIED, String.valueOf(file.lastModified()));
-        httpHeaders.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getName() + "\"");
-        httpHeaders.set(HttpHeaders.CONTENT_LENGTH, String.valueOf(file.length()));
-        return ResponseEntity.ok()
-            .headers(httpHeaders)
-            .contentLength(file.length())
-            .contentType(MediaType.APPLICATION_OCTET_STREAM)
-            .body(resource);
-    }
+     
 
 	@GetMapping(value = "/download1", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public Mono<Resource> downloadFile1() throws IOException {
@@ -286,25 +273,6 @@ public class SpringprojectApplication {
     }
     
 
-	@GetMapping("/download")
-	public ResponseEntity<InputStreamResource> downloadFile() throws IOException {
-        InputStream inputStream = new FileInputStream(FILE_PATH);
-        long fileSize = getFileSize(FILE_PATH);
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-        headers.setContentDispositionFormData("attachment", FILE_NAME);
-
-        return ResponseEntity.status(HttpStatus.PARTIAL_CONTENT)
-                .headers(headers)
-                .contentLength(fileSize)
-                .body(new InputStreamResource(inputStream));
-    }
-
-    private long getFileSize(String filePath) throws IOException {
-        try (InputStream inputStream = new FileInputStream(filePath)) {
-            return inputStream.available();
-        }
-    }
+	 
 
 }
