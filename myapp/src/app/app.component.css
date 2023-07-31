@@ -1,0 +1,23 @@
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* This will make the div take the full height of the viewport */
+  }
+  
+  .cool-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50; /* Change this to your desired button color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+  }
+  
+  .cool-button:hover {
+    background-color: #45a049; /* Change this to your desired button hover color */
+  }
+  
